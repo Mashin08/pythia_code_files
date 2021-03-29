@@ -1,0 +1,23 @@
+1) Задать переменные оболочки для использования программ PYTHIA8 и ROOT:
+   export PATH=$PATH:/cvmfs/alice.cern.ch/bin
+   alienv enter VO_ALICE@AliPhysics::vAN-20181201-1
+
+2) Скомпилировать программу pythia_chic2.cc:
+   make
+   в результате будет создан выполняемый файл pythia_chic2.exe
+
+3) Определить переменную оболочки для запуска программ PYTHIA8:
+   export PYTHIA8DATA=$ALICE_ROOT/PYTHIA8/pythia8210/xmldoc/
+
+4) Запустить программу pythia_chic2.exe с указанием числа событий, которые нужно сгенерировать:
+   ./pythia_chic2.exe 100000
+   В результаты работы программы будет создан файл pythia_chic2.root с гистограммами
+
+5) Для просмотра гистограмм запустить программу ROOT:
+   root pythia_chic2.root
+   Список гистограмм в файле можно посмотреть командой
+   .ls
+   Чтобы нарисовать гистограмму, например, с именем hChiC2_pt_all, исполнить команду
+   hChiC2_pt_all->Draw()
+   Выйти из ROOT - командой
+   .q
