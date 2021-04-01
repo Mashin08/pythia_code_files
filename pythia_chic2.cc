@@ -39,7 +39,11 @@ using namespace Pythia8;
 
 // инцииализация функции из "стороннего" файла проекта
 void Init_pythia_generator(Pythia*);
-void Event_handler(Pythia*);
+void Particle_data_handler(Pythia*, int number_of_iteration);
+void Write_particle_list(Pythia*, int number_of_iteration);
+void Write_mass_of_particles(Pythia* pythia, int number_of_iteration);
+void Write_momentum_of_particles(Pythia* pythia, int number_of_iteration);
+
 
 int main(int argc, char* argv[]) {
 
@@ -92,14 +96,14 @@ int main(int argc, char* argv[]) {
 	2. pythia.event[i], где i -- итератор -- i-ая частица в событии.
        */
 
-      cout << "Particle number: " << i << "  Particle id: " << pythia.event[i].id() <<
-	     " Particle status: " << pythia.event[i].status() << " Particle mass: " << 
-	     pythia.event[i].m() << "\n";
+      // Particle_data_handler(&(pythia), i);
+      // Write_particle_list(&(pythia), i);
+      // Write_mass_of_particles(&(pythia), i);
+      Write_momentum_of_particles(&(pythia), i);
 
-      //Event_handler(&(pythia));
       
     } // Конец цикла по частицам в данном событии
-    cout <<  pythia.event.size() << "\n";
+    cout << "Number of particles: " <<  pythia.event.size() << "\n" << "\n";
   } // Конец цикла по событиям
 
 
