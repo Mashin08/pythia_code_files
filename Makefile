@@ -30,7 +30,7 @@ LDFLAGS2 := $(shell root-config --ldflags --glibs) \
 # Default target; make examples (but not shared dictionary)
 all: $(EX)
 
-FILES_SRC =   pythia_chic2.cc Init_pythia_generator.cc Event_handler.cc
+FILES_SRC =   pythia_chic2.cc Init_pythia_generator.cc Event_handler.cc Hist_train.cc
 FILES_OBJ =  $(FILES_SRC:%.cc=%.o)
 
 # Rule to build hist example. Needs static PYTHIA 8 library

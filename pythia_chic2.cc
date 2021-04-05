@@ -39,11 +39,14 @@ using namespace Pythia8;
 
 // инцииализация функции из "стороннего" файла проекта
 void Init_pythia_generator(Pythia*);
-void Particle_data_handler(Pythia*, int number_of_iteration);
-void Write_particle_list(Pythia*, int number_of_iteration);
-void Write_mass_of_particles(Pythia* pythia, int number_of_iteration);
-void Write_momentum_of_particles(Pythia* pythia, int number_of_iteration);
+void Particle_data_handler(Pythia*, int);
+void Write_particle_list(Pythia*, int);
+void Write_mass_of_particles(Pythia*, int);
+void Write_momentum_of_particles(Pythia*, int);
+void Choose_particle_one_type(Pythia*, int);
+void Choose_particle_one_type_with_number(Pythia*);
 
+void hist_train();
 
 int main(int argc, char* argv[]) {
 
@@ -80,6 +83,7 @@ int main(int argc, char* argv[]) {
   // Начало цикла по событиям. Генерация событий.
 
   int iEvent2Print = 0;
+
   for (int iEvent = 0; iEvent < nEvents; ++iEvent) {
     if (!pythia.next()) continue;
 
@@ -92,22 +96,27 @@ int main(int argc, char* argv[]) {
     for (int i = 0; i < pythia.event.size(); ++i) {
 
       /*
-	1. Метод .size() -- "размер события" (количество частиц в данном событии)
+	1. Метод .size() -- "размер события" (количество частиц в данном событии
 	2. pythia.event[i], где i -- итератор -- i-ая частица в событии.
        */
 
       // Particle_data_handler(&(pythia), i);
       // Write_particle_list(&(pythia), i);
       // Write_mass_of_particles(&(pythia), i);
-      Write_momentum_of_particles(&(pythia), i);
+      // Write_momentum_of_particles(&(pythia), i);
+      // Choose_particle_one_type(&(pythia), i);
+      // Choose_particle_one_type_with_number(&(pythia), i);
 
       
     } // Конец цикла по частицам в данном событии
     cout << "Number of particles: " <<  pythia.event.size() << "\n" << "\n";
+    // Choose_particle_one_type_with_number(&(pythia), i);
+    // Choose_particle_one_type_with_number(&(pythia));
+
   } // Конец цикла по событиям
 
 
-
+  hist_train();
 
   cout << "\n\n Program was fineshed it's work correctly!\n\n";
  
